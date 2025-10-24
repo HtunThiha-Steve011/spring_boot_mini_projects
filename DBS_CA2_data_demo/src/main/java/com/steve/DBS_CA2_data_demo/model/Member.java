@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "member")
@@ -35,4 +37,7 @@ public class Member {
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
     private MemberRole role;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Cart> cartList = new ArrayList<>();
 }
